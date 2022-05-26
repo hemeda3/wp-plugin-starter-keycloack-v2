@@ -10,7 +10,7 @@ export default class App extends Component {
 			<div className="wp-plugin-starter-app">
 				<header className="wp-plugin-starter-app-header">
 					{ __(
-						'Welcome to WP Plugin Starter App!',
+						'Welcome to Transcription Plugin App!',
 						'wp-plugin-starter'
 					) }
 					<p>

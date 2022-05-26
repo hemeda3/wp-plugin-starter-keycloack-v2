@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress Coding Standards for WP Plugin Starter Plugin">
-	<description>Sniffs for WordPress plugins, with minor modifications for WP Plugin Starter</description>
+<ruleset name="WordPress Coding Standards for Transcription Plugin Plugin">
+	<description>Sniffs for WordPress plugins, with minor modifications for Transcription Plugin</description>
 
 	<!-- Only scan PHP files. -->
 	<arg name="extensions" value="php" />

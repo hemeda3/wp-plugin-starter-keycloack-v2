@@ -1,4 +1,4 @@
-=== WP Plugin Starter ===
+=== Transcription Plugin ===
 Contributors: shivapoudel
 Tags: custom-plugin, wp-scripts-ready, plugin-starter, translation-ready, rtl-support
 Requires at least: 5.3

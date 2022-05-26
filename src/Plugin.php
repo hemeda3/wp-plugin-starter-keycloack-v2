@@ -2,11 +2,11 @@
 /**
  * Main plugin class.
  *
- * @package WP_Plugin_Starter
+ * @package transcription
  * @since   1.0.0
  */
 
-namespace WP_Plugin_Starter;
+namespace transcription;
 
 defined('ABSPATH') || exit;
  use Firebase\JWT\JWK;
@@ -40,7 +40,7 @@ class Plugin
 	 */
 	public function __clone()
 	{
-		_doing_it_wrong(__FUNCTION__, esc_html__('Cloning is forbidden.', 'wp-plugin-starter'), '1.0.0');
+		_doing_it_wrong(__FUNCTION__, esc_html__('Cloning is forbidden.', 'transcription-slug'), '1.0.0');
 	}
 
 	/**
@@ -50,7 +50,7 @@ class Plugin
 	 */
 	public function __wakeup()
 	{
-		_doing_it_wrong(__FUNCTION__, esc_html__('Unserializing instances of this class is forbidden.', 'wp-plugin-starter'), '1.0.0');
+		_doing_it_wrong(__FUNCTION__, esc_html__('Unserializing instances of this class is forbidden.', 'transcription-slug'), '1.0.0');
 	}
 
 	/**
@@ -208,7 +208,7 @@ class Plugin
 	 */
 	public function admin_menu()
 	{
-		add_options_page(esc_html__('WP Plugin Starter settings', 'wp-plugin-starter'), esc_html__('Settings', 'wp-plugin-starter'), 'manage_options', 'wp-plugin-starter-settings', array($this, 'page_wrapper'));
+		add_options_page(esc_html__('Transcription Plugin settings', 'transcription-slug'), esc_html__('Settings', 'transcription-slug'), 'manage_options', 'transcription-slug-settings', array($this, 'page_wrapper'));
 	}
 
 	/**
@@ -217,17 +217,17 @@ class Plugin
 	public function page_wrapper()
 	{
 		?>
-		<div class="wp-plugin-starter-settings">
-		<h1 class="screen-reader-text hide-if-no-js"><?php echo esc_html_e('WP Plugin Starter Settings', 'wp-plugin-starter'); ?></h1>
-		<div id="root" class="wp-plugin-starter-settings__container hide-if-no-js"></div>
+		<div class="transcription-slug-settings">
+		<h1 class="screen-reader-text hide-if-no-js"><?php echo esc_html_e('Transcription Plugin Settings', 'transcription-slug'); ?></h1>
+		<div id="root" class="transcription-slug-settings__container hide-if-no-js"></div>
 
 		<?php // JavaScript is disabled. ?>
-		<div class="wrap hide-if-js wp-plugin-starter-settings-no-js">
-			<h1 class="wp-heading-inline"><?php echo esc_html_e('WP Plugin Starter Settings', 'wp-plugin-starter'); ?></h1>
+		<div class="wrap hide-if-js transcription-slug-settings-no-js">
+			<h1 class="wp-heading-inline"><?php echo esc_html_e('Transcription Plugin Settings', 'transcription-slug'); ?></h1>
 			<div class="notice notice-error notice-alt">
 				<p>
 					<?php
-					$message = esc_html__('The WP Plugin Starter Settings requires JavaScript. Please enable JavaScript in your browser settings.', 'wp-plugin-starter');
+					$message = esc_html__('The Transcription Plugin Settings requires JavaScript. Please enable JavaScript in your browser settings.', 'transcription-slug');
 
 					/**
 					 * Filters the message displayed in the setting interface when JavaScript is
@@ -255,7 +255,7 @@ class Plugin
 
 		// Register scripts.
 		wp_register_script(
-				'wp-plugin-starter-settings',
+				'transcription-slug-settings',
 				plugins_url('build/index.js', WPS_PLUGIN_FILE),
 				$asset_file['dependencies'],
 				$asset_file['version'],
@@ -264,21 +264,21 @@ class Plugin
 
 		// Register styles.
 		wp_register_style(
-				'wp-plugin-starter-settings',
+				'transcription-slug-settings',
 				plugins_url('build/index.css', WPS_PLUGIN_FILE),
 				array(),
 				filemtime(plugin_dir_path(WPS_PLUGIN_FILE) . 'build/index.css')
 		);
 
 		// Add RTL support for admin styles.
-		wp_style_add_data('wp-plugin-starter-settings', 'rtl', 'replace');
+		wp_style_add_data('transcription-slug-settings', 'rtl', 'replace');
 
 		if (
 				isset($screen->id)
-				&& 'settings_page_wp-plugin-starter-settings' === $screen->id
+				&& 'settings_page_transcription-slug-settings' === $screen->id
 		) {
-			wp_enqueue_style('wp-plugin-starter-settings');
-			wp_enqueue_script('wp-plugin-starter-settings');
+			wp_enqueue_style('transcription-slug-settings');
+			wp_enqueue_script('transcription-slug-settings');
 		}
 	}
 
@@ -292,7 +292,7 @@ class Plugin
 	public function plugin_action_links($links)
 	{
 		$action_links = array(
-				'settings' => '<a href="' . admin_url('options-general.php?page=wp-plugin-starter-settings') . '" aria-label="' . esc_attr__('View Plugin settings', 'wp-plugin-starter') . '">' . esc_html__('Settings', 'wp-plugin-starter') . '</a>',
+				'settings' => '<a href="' . admin_url('options-general.php?page=transcription-slug-settings') . '" aria-label="' . esc_attr__('View Plugin settings', 'transcription-slug') . '">' . esc_html__('Settings', 'transcription-slug') . '</a>',
 		);
 
 		return array_merge($action_links, $links);
@@ -300,3 +300,35 @@ class Plugin
 
 
 }
+
+function httpPostXformv2($url, $data) {
+
+
+
+	$curl = curl_init($url);
+	curl_setopt($curl, CURLOPT_URL, $url);
+	curl_setopt($curl, CURLOPT_POST, true);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+	$headers = array(
+			"Content-Type: application/x-www-form-urlencoded",
+	);
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+
+	curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+
+//for debug only!
+	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+	$resp = curl_exec($curl);
+	curl_close($curl);
+//    var_dump($resp);
+
+
+
+
+	return $resp;
+}
+

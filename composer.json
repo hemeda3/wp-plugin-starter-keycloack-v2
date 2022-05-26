@@ -20,7 +20,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"WP_Plugin_Starter\\": "src/"
+			"transcription\\": "src/"
 		}
 	},
 	"scripts": {

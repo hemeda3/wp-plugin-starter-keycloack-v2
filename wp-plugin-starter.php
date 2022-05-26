@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: WP Plugin Starter
+ * Plugin Name: Transcription Plugin2_with_keyloack
  * Plugin URI: https://shivapoudel.com
  * Description: Just another WordPress plugin starter.
  * Version: 1.0.0
@@ -11,10 +11,10 @@
  * Requires at least: 5.3
  * Requires PHP: 5.6.20
  *
- * @package WP_Plugin_Starter
+ * @package transcription
  */
 
-use WP_Plugin_Starter\Plugin;
+use transcription\Plugin;
 
 // Exit if access directly.
 defined( 'ABSPATH' ) || exit;
@@ -43,7 +43,7 @@ if ( is_readable( $autoloader ) ) {
 		error_log( // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			sprintf(
 				/* translators: 1: composer command. 2: plugin directory */
-				esc_html__( 'Your installation of the WP Plugin Starter plugin is incomplete. Please run %1$s within the %2$s directory.', 'wp-plugin-starter' ),
+				esc_html__( 'Your installation of the Transcription Plugin plugin is incomplete. Please run %1$s within the %2$s directory.', 'wp-plugin-starter' ),
 				'`composer install`',
 				'`' . esc_html( str_replace( ABSPATH, '', __DIR__ ) ) . '`'
 			)
@@ -62,7 +62,7 @@ if ( is_readable( $autoloader ) ) {
 					<?php
 					printf(
 						/* translators: 1: composer command. 2: plugin directory */
-						esc_html__( 'Your installation of the WP Plugin Starter plugin is incomplete. Please run %1$s within the %2$s directory.', 'wp-plugin-starter' ),
+						esc_html__( 'Your installation of the Transcription Plugin plugin is incomplete. Please run %1$s within the %2$s directory.', 'wp-plugin-starter' ),
 						'<code>composer install</code>',
 						'<code>' . esc_html( str_replace( ABSPATH, '', __DIR__ ) ) . '</code>'
 					);
