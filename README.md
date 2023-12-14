@@ -1,5 +1,7 @@
 # Transcription Plugin
 
+Helps you authenticate any wordpress with  my :D Keycloak server (until I make it very flexiable) 
+
 Welcome to the Transcription Plugin repository on GitHub. Here you can browse the source, look at open issues and use this template to bootstrap your next WordPress plugin development.
 
 Installation
